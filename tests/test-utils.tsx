@@ -1,18 +1,14 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
-const AllTheProviders = ({ children }) => {
+const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   return <BrowserRouter>{children}</BrowserRouter>;
 };
 
 const customRender = (
-  ui: React.ReactElement<any, string | React.JSXElementConstructor<any>>,
-  options: RenderOptions<
-    typeof import('@testing-library/dom/types/queries'),
-    HTMLElement,
-    HTMLElement
-  >
+  ui: ReactElement,
+  options?: Omit<RenderOptions, 'wrapper'>
 ) => render(ui, { wrapper: AllTheProviders, ...options });
 
 // re-export everything
