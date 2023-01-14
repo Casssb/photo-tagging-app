@@ -1,14 +1,14 @@
 import { Suspense } from 'react';
-import Header from '../components/Header';
 import { Outlet, ScrollRestoration } from 'react-router-dom';
 import Loading from '../components/Loading';
+import HeaderResponsive from '../components/Header';
 
 type Props = {};
 
 const RootLayout = (props: Props) => {
   return (
     <>
-      <Header />
+      <HeaderResponsive />
       <ScrollRestoration />
       <Suspense fallback={<Loading />}>
         <Outlet />
