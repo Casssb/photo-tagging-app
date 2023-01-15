@@ -1,12 +1,14 @@
-import { Flex, Loader } from '@mantine/core';
+import { Center, Container, Loader } from '@mantine/core';
 
 type Props = {};
 
 const Loading = (props: Props) => {
   return (
-    <Flex>
-      <Loader color="grape" size="lg" />
-    </Flex>
+    <Container>
+      <Center h={'80vh'}>
+        <Loader color="grape" size="lg" />
+      </Center>
+    </Container>
   );
 };
 

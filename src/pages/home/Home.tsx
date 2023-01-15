@@ -1,16 +1,27 @@
-import React from 'react';
 import { useAppSelector } from '../../redux/hooks/hooks';
+import { Container, Grid } from '@mantine/core';
+import HomeCard from './HomeCard';
 
-type Props = {};
+const Home = () => {
+  const games = useAppSelector((state) => state.game.games);
 
-const Home = (props: Props) => {
-  const games = useAppSelector((state) => state.game.games[0].characters.find(char => char.name === 'Master Chief'));
-  console.log(games);
-
-  return <main>
-    <img src={games?.imageSrc} alt={games?.name} />
-    <h1>{games?.name}</h1>
-  </main>;
+  return (
+    <main>
+      <Container>
+        <Grid>
+          {games.map((game) => (
+            <Grid.Col md={6} key={game.id}>
+              <HomeCard
+                imageSrc={game.imageSrc}
+                name={game.name}
+                id={game.id}
+              />
+            </Grid.Col>
+          ))}
+        </Grid>
+      </Container>
+    </main>
+  );
 };
 
 export default Home;
