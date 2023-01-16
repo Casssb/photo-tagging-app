@@ -15,6 +15,7 @@ const Home = () => {
                 imageSrc={game.imageSrc}
                 name={game.name}
                 id={game.id}
+                characters={game.characters}
               />
             </Grid.Col>
           ))}

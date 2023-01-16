@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   createStyles,
   Header,
@@ -12,6 +11,8 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { NavLink } from 'react-router-dom';
+import { useAppDispatch } from '../redux/hooks/hooks';
+import { reset } from '../redux/slices/gameSlice';
 
 const HEADER_HEIGHT = 60;
 
@@ -88,8 +89,7 @@ const useStyles = createStyles((theme) => ({
         variant: 'light',
         color: 'grape',
       }).background,
-      color: theme.fn.variant({ variant: 'light', color: 'pink.8' })
-        .color,
+      color: theme.fn.variant({ variant: 'light', color: 'pink.8' }).color,
     },
   },
 }));
@@ -112,6 +112,7 @@ const links = [
 const HeaderResponsive = () => {
   const [opened, { toggle, close }] = useDisclosure(false);
   const { classes, cx } = useStyles();
+  const dispatch = useAppDispatch();
 
   const items = links.map((link) => (
     <Anchor
@@ -123,6 +124,7 @@ const HeaderResponsive = () => {
       className={cx(classes.link)}
       onClick={() => {
         close();
+        dispatch(reset());
       }}
     >
       {link.label}
