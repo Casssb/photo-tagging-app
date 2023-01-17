@@ -29,7 +29,7 @@ export interface character {
   imageSrc: string;
 }
 
-interface game {
+export interface game {
   name: string;
   imageSrc: string;
   imageSrcLg: string;
@@ -41,12 +41,14 @@ interface game {
 export interface gameState {
   isGameOn: boolean;
   isGameOver: boolean;
+  winningTime: number | null;
   games: Array<game>;
 }
 
 export const initialState: gameState = {
   isGameOn: false,
   isGameOver: false,
+  winningTime: null,
   games: [
     {
       name: 'Planet ISO',

@@ -3,6 +3,8 @@ import { character } from '../../redux/slices/gameData';
 import { db } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { LocationProps } from './Game';
+import { useAppDispatch } from '../../redux/hooks/hooks';
+import { setCharFound, checkForWin } from '../../redux/slices/gameSlice';
 
 interface PopMenuProps {
   menuOpen: boolean;
@@ -21,6 +23,7 @@ const PopUpMenu = ({
   guess,
   setMenuOpen,
 }: PopMenuProps) => {
+  const dispatch = useAppDispatch();
   const getCharInfo = async (char: character, guess: LocationProps | null) => {
     const querySnapshot = await getDocs(collection(db, 'games'));
     querySnapshot.forEach((doc) => {
@@ -33,6 +36,9 @@ const PopUpMenu = ({
         targetChar.y > guess!.y - 5
       ) {
         console.log(`you found ${char.name}`);
+        const charId = char.id;
+        dispatch(setCharFound({ gameId, charId }));
+        dispatch(checkForWin());
       }
     });
   };
@@ -49,18 +55,22 @@ const PopUpMenu = ({
           left: `${screenPos?.x}px`,
         }}
       >
-        {characters.map((character) => (
-          <Button
-            key={character.name}
-            variant="default"
-            onClick={() => {
-              setMenuOpen(false);
-              getCharInfo(character, guess);
-            }}
-          >
-            {character.name}
-          </Button>
-        ))}
+        {characters.map((char) => {
+          if (!char.isFound) {
+            return (
+              <Button
+                key={char.name}
+                variant="default"
+                onClick={() => {
+                  setMenuOpen(false);
+                  getCharInfo(char, guess);
+                }}
+              >
+                {char.name}
+              </Button>
+            );
+          }
+        })}
       </Button.Group>
     </Box>
   );

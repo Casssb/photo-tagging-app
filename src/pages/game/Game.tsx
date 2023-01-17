@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Box, Container, Title } from '@mantine/core';
+import { Box, Container } from '@mantine/core';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../redux/hooks/hooks';
 import { RootState } from '../../redux/store';
 import { GlassMagnifier } from 'react-image-magnifiers';
 import PopUpMenu from './PopUpMenu';
+import GameOver from './GameOver';
 
 export interface LocationProps {
   x: number;
@@ -20,6 +21,7 @@ const Game = () => {
   const [game] = useAppSelector((state: RootState) =>
     state.game.games.filter((game) => game.id === params.id)
   );
+  const { isGameOver } = useAppSelector((state: RootState) => state.game);
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const node = e.target as HTMLElement;
@@ -33,27 +35,32 @@ const Game = () => {
   return (
     <main>
       <Container>
-        <Box>
-          <Title>{`${guess?.x}, ${guess?.y}`}</Title>
-        </Box>
-        <Box onClick={(e) => handleClick(e)}>
-          <GlassMagnifier
-            imageSrc={game.imageSrc}
-            largeImageSrc={game.imageSrcLg}
-            imageAlt={game.name}
-            magnifierSize={'10%'}
-            magnifierBorderColor="black"
-            square
-          />
-        </Box>
-        <PopUpMenu
-          characters={game.characters}
-          gameId={game.id}
-          menuOpen={menuOpen}
-          screenPos={screenPos}
-          guess={guess}
-          setMenuOpen={setMenuOpen}
-        />
+        {isGameOver ? (
+          <>
+            <GameOver game={game} />
+          </>
+        ) : (
+          <>
+            <Box onClick={(e) => handleClick(e)}>
+              <GlassMagnifier
+                imageSrc={game.imageSrc}
+                largeImageSrc={game.imageSrcLg}
+                imageAlt={game.name}
+                magnifierSize={'10%'}
+                magnifierBorderColor="black"
+                square
+              />
+            </Box>
+            <PopUpMenu
+              characters={game.characters}
+              gameId={game.id}
+              menuOpen={menuOpen}
+              screenPos={screenPos}
+              guess={guess}
+              setMenuOpen={setMenuOpen}
+            />
+          </>
+        )}
       </Container>
     </main>
   );
