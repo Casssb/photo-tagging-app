@@ -24,6 +24,7 @@ import game4char3 from '../../assets/images/game4-monkey-d-luffy.png';
 
 export interface character {
   name: string;
+  id: string;
   isFound: boolean;
   imageSrc: string;
 }
@@ -56,16 +57,19 @@ export const initialState: gameState = {
       characters: [
         {
           name: 'Claptrap',
+          id: 'char1',
           isFound: false,
           imageSrc: game1char1,
         },
         {
           name: 'Wario',
+          id: 'char2',
           isFound: false,
           imageSrc: game1char2,
         },
         {
           name: 'Master Chief',
+          id: 'char3',
           isFound: false,
           imageSrc: game1char3,
         },
@@ -80,16 +84,19 @@ export const initialState: gameState = {
       characters: [
         {
           name: 'Geralt',
+          id: 'char1',
           isFound: false,
           imageSrc: game2char1,
         },
         {
           name: 'Donkey',
+          id: 'char2',
           isFound: false,
           imageSrc: game2char2,
         },
         {
           name: 'Willow',
+          id: 'char3',
           isFound: false,
           imageSrc: game2char3,
         },
@@ -104,16 +111,19 @@ export const initialState: gameState = {
       characters: [
         {
           name: 'Sonic',
+          id: 'char1',
           isFound: false,
           imageSrc: game3char1,
         },
         {
           name: 'Marty McFly',
+          id: 'char2',
           isFound: false,
           imageSrc: game3char2,
         },
         {
           name: 'Predator',
+          id: 'char3',
           isFound: false,
           imageSrc: game3char3,
         },
@@ -128,16 +138,19 @@ export const initialState: gameState = {
       characters: [
         {
           name: 'Link',
+          id: 'char1',
           isFound: false,
           imageSrc: game4char1,
         },
         {
           name: 'Inigo Montoya',
+          id: 'char2',
           isFound: false,
           imageSrc: game4char2,
         },
         {
           name: 'Monkey D Luffy',
+          id: 'char3',
           isFound: false,
           imageSrc: game4char3,
         },

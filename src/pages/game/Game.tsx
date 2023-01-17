@@ -6,7 +6,7 @@ import { RootState } from '../../redux/store';
 import { GlassMagnifier } from 'react-image-magnifiers';
 import PopUpMenu from './PopUpMenu';
 
-interface LocationProps {
+export interface LocationProps {
   x: number;
   y: number;
 }
@@ -34,7 +34,7 @@ const Game = () => {
     <main>
       <Container>
         <Box>
-          <Title>{`${guess?.y}, ${guess?.x}`}</Title>
+          <Title>{`${guess?.x}, ${guess?.y}`}</Title>
         </Box>
         <Box onClick={(e) => handleClick(e)}>
           <GlassMagnifier
@@ -48,8 +48,10 @@ const Game = () => {
         </Box>
         <PopUpMenu
           characters={game.characters}
+          gameId={game.id}
           menuOpen={menuOpen}
           screenPos={screenPos}
+          guess={guess}
           setMenuOpen={setMenuOpen}
         />
       </Container>
