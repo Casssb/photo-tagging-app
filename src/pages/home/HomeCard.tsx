@@ -34,6 +34,7 @@ const HomeCard = ({ imageSrc, name, id, characters }: HomeCardProps) => {
         <Flex gap={'0.5rem'}>
           {characters.map((char) => (
             <div
+            key={char.name}
               style={{
                 marginLeft: 'auto',
                 marginRight: 'auto',
@@ -62,7 +63,7 @@ const HomeCard = ({ imageSrc, name, id, characters }: HomeCardProps) => {
         radius="md"
         onClick={() => {
           navigate(`game/${id}`);
-          dispatch(gameOn());
+          dispatch(gameOn(id));
         }}
       >
         Play

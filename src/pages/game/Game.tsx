@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Box, Button, Container, Title } from '@mantine/core';
+import { Box, Container, Title } from '@mantine/core';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../redux/hooks/hooks';
 import { RootState } from '../../redux/store';
 import { GlassMagnifier } from 'react-image-magnifiers';
+import PopUpMenu from './PopUpMenu';
 
 interface LocationProps {
   x: number;
@@ -24,7 +25,7 @@ const Game = () => {
     const node = e.target as HTMLElement;
     const x = (e.nativeEvent.offsetX / node.offsetWidth) * 100;
     const y = (e.nativeEvent.offsetY / node.offsetHeight) * 100;
-    setGuess({ x: x, y: y });
+    setGuess({ x: Math.floor(x), y: Math.floor(y) });
     setSreenPos({ x: e.pageX, y: e.pageY });
     setMenuOpen(true);
   };
@@ -34,7 +35,6 @@ const Game = () => {
       <Container>
         <Box>
           <Title>{`${guess?.y}, ${guess?.x}`}</Title>
-          <Title>{`${screenPos?.y}, ${screenPos?.x}`}</Title>
         </Box>
         <Box onClick={(e) => handleClick(e)}>
           <GlassMagnifier
@@ -46,30 +46,12 @@ const Game = () => {
             square
           />
         </Box>
-        <Box>
-          <Button.Group
-            orientation="vertical"
-            sx={{
-              display: `${menuOpen ? 'flex' : 'none'}`,
-              width: 'min-content',
-              position: 'absolute',
-              top: `${screenPos?.y}px`,
-              left: `${screenPos?.x}px`,
-            }}
-          >
-            {game.characters.map((character) => (
-              <Button
-                key={character.name}
-                variant="default"
-                onClick={() => {
-                  setMenuOpen(false);
-                }}
-              >
-                {character.name}
-              </Button>
-            ))}
-          </Button.Group>
-        </Box>
+        <PopUpMenu
+          characters={game.characters}
+          menuOpen={menuOpen}
+          screenPos={screenPos}
+          setMenuOpen={setMenuOpen}
+        />
       </Container>
     </main>
   );

@@ -11,8 +11,10 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { NavLink } from 'react-router-dom';
-import { useAppDispatch } from '../redux/hooks/hooks';
-import { reset } from '../redux/slices/gameSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks/hooks';
+import { reset } from '../../redux/slices/gameSlice';
+import CharAvatars from './CharAvatars';
+import Timer from './Timer';
 
 const HEADER_HEIGHT = 60;
 
@@ -112,6 +114,7 @@ const links = [
 const HeaderResponsive = () => {
   const [opened, { toggle, close }] = useDisclosure(false);
   const { classes, cx } = useStyles();
+  const { isGameOn } = useAppSelector((state) => state.game);
   const dispatch = useAppDispatch();
 
   const items = links.map((link) => (
@@ -141,6 +144,12 @@ const HeaderResponsive = () => {
         >
           Pixel Seek
         </Title>
+        {isGameOn && (
+          <>
+            <CharAvatars />
+            <Timer />
+          </>
+        )}
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>

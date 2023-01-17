@@ -33,6 +33,7 @@ interface game {
   imageSrc: string;
   imageSrcLg: string;
   id: string;
+  isActive: boolean;
   characters: Array<character>;
 }
 
@@ -51,6 +52,7 @@ export const initialState: gameState = {
       imageSrc: game1,
       imageSrcLg: game1lg,
       id: 'game1',
+      isActive: false,
       characters: [
         {
           name: 'Claptrap',
@@ -74,6 +76,7 @@ export const initialState: gameState = {
       imageSrc: game2,
       imageSrcLg: game2lg,
       id: 'game2',
+      isActive: false,
       characters: [
         {
           name: 'Geralt',
@@ -97,6 +100,7 @@ export const initialState: gameState = {
       imageSrc: game3,
       imageSrcLg: game3lg,
       id: 'game3',
+      isActive: false,
       characters: [
         {
           name: 'Sonic',
@@ -120,6 +124,7 @@ export const initialState: gameState = {
       imageSrc: game4,
       imageSrcLg: game4lg,
       id: 'game4',
+      isActive: false,
       characters: [
         {
           name: 'Link',

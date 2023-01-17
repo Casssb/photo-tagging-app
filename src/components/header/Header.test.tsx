@@ -1,4 +1,4 @@
-import { render, screen } from '../../tests/test-utils';
+import { render, screen } from '../../../tests/test-utils';
 import { describe, expect, it } from 'vitest';
 import '@testing-library/jest-dom';
 import HeaderResponsive from './Header';
