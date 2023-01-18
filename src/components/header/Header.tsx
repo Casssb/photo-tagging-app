@@ -106,7 +106,7 @@ const links = [
     label: 'Info',
   },
   {
-    link: 'scoreboard',
+    link: 'scoreboard/game1',
     label: 'Scoreboard',
   },
 ];

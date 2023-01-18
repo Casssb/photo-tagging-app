@@ -2,13 +2,7 @@ import { useState, useEffect } from 'react';
 import { useInterval } from '@mantine/hooks';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hooks';
 import { setWinningTime } from '../../redux/slices/gameSlice';
-
-const formatTime = (seconds: number) => {
-  const secsToMs = seconds * 1000;
-  const result = new Date(secsToMs).toISOString().slice(11, 19);
-
-  return result;
-};
+import formatTime from '../../utils/helpers';
 
 const Timer = () => {
   const [seconds, setSeconds] = useState(0);
