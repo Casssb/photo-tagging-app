@@ -41,14 +41,18 @@ const GameOver = ({ game }: GameOverProps) => {
   });
 
   const handleSubmit = async (name: string, time: number | null) => {
-    console.log(name, time);
     const docRef = doc(db, 'scores', 'scores');
-    await updateDoc(docRef, {
-      [game.id]: arrayUnion({
-        name: name,
-        time: time,
-      }),
-    });
+    try {
+      await updateDoc(docRef, {
+        [game.id]: arrayUnion({
+          name: name,
+          time: time,
+        }),
+      });
+    } catch (e) {
+      console.log('error updating doc', e);
+    }
+    dispatch(reset());
     navigate(`/scoreboard/${game.id}`);
   };
 

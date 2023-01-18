@@ -35,7 +35,6 @@ const PopUpMenu = ({
         targetChar.y < guess!.y + 5 &&
         targetChar.y > guess!.y - 5
       ) {
-        console.log(`you found ${char.name}`);
         const charId = char.id;
         dispatch(setCharFound({ gameId, charId }));
         dispatch(checkForWin());

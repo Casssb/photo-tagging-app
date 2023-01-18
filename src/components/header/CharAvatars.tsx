@@ -16,7 +16,7 @@ const CharAvatars = () => {
               height={40}
               src={char.imageSrc}
               alt={char.name}
-              fit="cover"
+              fit="contain"
               key={char.name}
             />
           );
