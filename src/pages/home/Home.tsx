@@ -24,7 +24,7 @@ const Home = () => {
               width: '300px',
             }}
           >
-            <Image src={puzzleIcon} />
+            <Image src={puzzleIcon} alt="multi-coloured puzzle icon" />
           </div>
           <Title
             order={1}

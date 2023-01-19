@@ -32,7 +32,7 @@ const Info = () => {
             forums
           </Title>
           <Title order={3}>
-            The SVG's were all taken from{' '}
+            The character images were all taken from{' '}
             <Text
               span
               inherit

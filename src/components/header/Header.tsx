@@ -141,7 +141,11 @@ const HeaderResponsive = () => {
     <Header height={HEADER_HEIGHT} mb={40} className={classes.root}>
       <Container className={classes.header}>
         {isMobile ? (
-          <Image src={puzzleIcon} width={'60px'} />
+          <Image
+            src={puzzleIcon}
+            width={'60px'}
+            alt="multi-coloured puzzle icon"
+          />
         ) : (
           <Title
             order={2}
