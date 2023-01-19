@@ -6,7 +6,7 @@ import {
   Flex,
   Group,
   Stack,
-  Text,
+  Table,
   Title,
 } from '@mantine/core';
 import { useEffect, useState } from 'react';
@@ -28,6 +28,18 @@ const Scoreboard = () => {
     state.game.games.filter((game) => game.id === id)
   );
   const games = useAppSelector((state) => state.game.games);
+
+  const createScoreTableRows = (scores: scoreProps[]) => {
+    return scores
+      .sort((a, b) => a.time - b.time)
+      .map((score, index) => (
+        <tr key={score.name}>
+          <td>{index + 1}</td>
+          <td>{score.name}</td>
+          <td>{formatTime(score.time)}</td>
+        </tr>
+      ));
+  };
 
   useEffect(() => {
     const getScores = async (id?: string) => {
@@ -116,14 +128,19 @@ const Scoreboard = () => {
           >
             {selectedGame ? selectedGame.name : games[0].name}
           </Title>
-          <Stack spacing={'xs'} w={'100%'}>
-            {scores &&
-              scores.sort((a,b) => a.time - b.time).map((score) => (
-                <Flex align={'center'} justify={'center'} gap={'2rem'}>
-                  <Text>{score.name}</Text>
-                  <Text>{formatTime(score.time)}</Text>
-                </Flex>
-              ))}
+          <Stack spacing={'xs'} w={'100%'} mt={'1rem'}>
+            {scores && (
+              <Table striped withColumnBorders withBorder>
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+                <tbody>{createScoreTableRows(scores)}</tbody>
+              </Table>
+            )}
           </Stack>
         </Flex>
       </Container>
