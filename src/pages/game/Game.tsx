@@ -6,6 +6,7 @@ import { RootState } from '../../redux/store';
 import { GlassMagnifier } from 'react-image-magnifiers';
 import PopUpMenu from './PopUpMenu';
 import GameOver from './GameOver';
+import GuessPopUp from './GuessPopUp';
 import { useMediaQuery } from '@mantine/hooks';
 
 export interface LocationProps {
@@ -23,6 +24,7 @@ const Game = () => {
   const [game] = useAppSelector((state: RootState) =>
     state.game.games.filter((game) => game.id === params.id)
   );
+  const { guessPopUp } = useAppSelector((state) => state.game);
   const { isGameOver } = useAppSelector((state: RootState) => state.game);
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -65,6 +67,8 @@ const Game = () => {
               guess={guess}
               setMenuOpen={setMenuOpen}
             />
+
+            <GuessPopUp screenPos={screenPos} details={guessPopUp} />
           </>
         )}
       </Container>

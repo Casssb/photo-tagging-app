@@ -38,10 +38,17 @@ export interface game {
   characters: Array<character>;
 }
 
+export interface guessPopUp {
+  isOpen: boolean;
+  isGuessCorrect: boolean;
+  message: string;
+}
+
 export interface gameState {
   isGameOn: boolean;
   isGameOver: boolean;
   winningTime: number | null;
+  guessPopUp: guessPopUp;
   games: Array<game>;
 }
 
@@ -49,6 +56,11 @@ export const initialState: gameState = {
   isGameOn: false,
   isGameOver: false,
   winningTime: null,
+  guessPopUp: {
+    isOpen: false,
+    isGuessCorrect: false,
+    message: '',
+  },
   games: [
     {
       name: 'Planet ISO',

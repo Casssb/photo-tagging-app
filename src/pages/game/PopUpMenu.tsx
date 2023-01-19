@@ -4,7 +4,12 @@ import { db } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { LocationProps } from './Game';
 import { useAppDispatch } from '../../redux/hooks/hooks';
-import { setCharFound, checkForWin } from '../../redux/slices/gameSlice';
+import {
+  setCharFound,
+  checkForWin,
+  setGuessPopUp,
+  closeGuessPopUp,
+} from '../../redux/slices/gameSlice';
 
 interface PopMenuProps {
   menuOpen: boolean;
@@ -38,6 +43,27 @@ const PopUpMenu = ({
         const charId = char.id;
         dispatch(setCharFound({ gameId, charId }));
         dispatch(checkForWin());
+        dispatch(
+          setGuessPopUp({
+            isOpen: true,
+            isGuessCorrect: true,
+            message: `You found ${char.name}`,
+          })
+        );
+        setTimeout(() => {
+          dispatch(closeGuessPopUp());
+        }, 1000);
+      } else {
+        dispatch(
+          setGuessPopUp({
+            isOpen: true,
+            isGuessCorrect: false,
+            message: `That's not ${char.name}`,
+          })
+        );
+        setTimeout(() => {
+          dispatch(closeGuessPopUp());
+        }, 1000);
       }
     });
   };
