@@ -159,6 +159,7 @@ const HeaderResponsive = () => {
           onClick={toggle}
           className={classes.burger}
           size="sm"
+          title={opened ? 'Close Navigation' : 'Open Navigation'}
         />
 
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
