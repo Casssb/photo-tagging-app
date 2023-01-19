@@ -5,6 +5,7 @@ import {
   Container,
   Flex,
   Group,
+  Image,
   Stack,
   Table,
   Title,
@@ -128,6 +129,13 @@ const Scoreboard = () => {
           >
             {selectedGame ? selectedGame.name : games[0].name}
           </Title>
+          <div style={{ width: 340, marginLeft: 'auto', marginRight: 'auto', marginTop: '1rem', marginBottom: '1rem' }}>
+            <Image
+              radius="xl"
+              src={selectedGame ? selectedGame.imageSrc : games[0].imageSrc}
+              alt={selectedGame ? selectedGame.name : games[0].name}
+            />
+          </div>
           <Stack spacing={'xs'} w={'100%'} mt={'1rem'}>
             {scores && (
               <Table striped withColumnBorders withBorder>

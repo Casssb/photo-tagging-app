@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Box, Container } from '@mantine/core';
+import { Box, Container, Image } from '@mantine/core';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../redux/hooks/hooks';
 import { RootState } from '../../redux/store';
 import { GlassMagnifier } from 'react-image-magnifiers';
 import PopUpMenu from './PopUpMenu';
 import GameOver from './GameOver';
+import { useMediaQuery } from '@mantine/hooks';
 
 export interface LocationProps {
   x: number;
@@ -17,6 +18,7 @@ const Game = () => {
   const [screenPos, setSreenPos] = useState<LocationProps | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const isMobile = useMediaQuery('(max-width: 800px)');
   const params = useParams();
   const [game] = useAppSelector((state: RootState) =>
     state.game.games.filter((game) => game.id === params.id)
@@ -42,14 +44,18 @@ const Game = () => {
         ) : (
           <>
             <Box onClick={(e) => handleClick(e)}>
-              <GlassMagnifier
-                imageSrc={game.imageSrc}
-                largeImageSrc={game.imageSrcLg}
-                imageAlt={game.name}
-                magnifierSize={'10%'}
-                magnifierBorderColor="black"
-                square
-              />
+              {isMobile ? (
+                <Image src={game.imageSrc} alt={game.name} />
+              ) : (
+                <GlassMagnifier
+                  imageSrc={game.imageSrc}
+                  largeImageSrc={game.imageSrcLg}
+                  imageAlt={game.name}
+                  magnifierSize={'10%'}
+                  magnifierBorderColor="black"
+                  square
+                />
+              )}
             </Box>
             <PopUpMenu
               characters={game.characters}

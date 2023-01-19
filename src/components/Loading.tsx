@@ -1,8 +1,6 @@
 import { Center, Container, Loader } from '@mantine/core';
 
-type Props = {};
-
-const Loading = (props: Props) => {
+const Loading = () => {
   return (
     <Container>
       <Center h={'80vh'}>
