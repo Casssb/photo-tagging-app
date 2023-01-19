@@ -8,13 +8,15 @@ import {
   Transition,
   Anchor,
   Title,
+  Image,
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hooks';
 import { reset } from '../../redux/slices/gameSlice';
 import CharAvatars from './CharAvatars';
 import Timer from './Timer';
+import puzzleIcon from '../../assets/images/puzzle-icon.png';
 
 const HEADER_HEIGHT = 60;
 
@@ -116,6 +118,7 @@ const HeaderResponsive = () => {
   const { classes, cx } = useStyles();
   const { isGameOn } = useAppSelector((state) => state.game);
   const dispatch = useAppDispatch();
+  const isMobile = useMediaQuery('(max-width: 800px)');
 
   const items = links.map((link) => (
     <Anchor
@@ -137,13 +140,17 @@ const HeaderResponsive = () => {
   return (
     <Header height={HEADER_HEIGHT} mb={40} className={classes.root}>
       <Container className={classes.header}>
-        <Title
-          order={2}
-          variant="gradient"
-          gradient={{ from: 'red', to: 'purple', deg: 45 }}
-        >
-          Pixel Seek
-        </Title>
+        {isMobile ? (
+          <Image src={puzzleIcon} width={'60px'} />
+        ) : (
+          <Title
+            order={2}
+            variant="gradient"
+            gradient={{ from: 'red', to: 'purple', deg: 45 }}
+          >
+            Pixel Seek
+          </Title>
+        )}
         {isGameOn && (
           <>
             <CharAvatars />
