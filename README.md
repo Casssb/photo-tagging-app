@@ -25,7 +25,8 @@ A seek & find photo tagging game. Built with React, Redux & Firebase.
 ## Thoughts
 This was a ton of fun and I learnt a lot! Here's a quick summary:
 * Typescript: This is amazing and by far my favourite recent addition to the tech stack. The more I read, the more I realise how important it is to make my code easy to debug, document and update. Although using Typescript meant a ton more reading of docs (especially Redux), the way it synchronises with auto-complete is worth it alone! I think I'll stick to using this in future. The extra time spent learning how Typescript integrates with each 3rd party library I use seems easily worth it with all the extra safety it provides.
-* Redux Toolkit- I've used Redux without this before and also Reacts internal version of the Flux pattern. Redux Toolkit just makes everything easy and has less boilerplate. I like how it integrates Immer although it does feel a little weird creating Reducers but not shallow copying state! I'm going to look into Recoil or Zustand next as these seem even simpler/cleaner (unless I need middleware, in which case it seems Redux is still the way to go).
+* Redux Toolkit- I've used Redux without this before and also Reacts internal state management equivalents (useReducer with context/useContext). Redux Toolkit just makes everything easy and has less boilerplate. I like how it integrates Immer although it does feel a little weird creating Reducers but not shallow copying state! <br>
+I'm going to look into Recoil or Zustand next as these seem even simpler/cleaner (unless I need middleware, in which case it seems Redux is still the way to go).
 * Firebase- Simple, easy to use and understand. Solid docs.
 * Mantine- I think this is my favourite component library. It has more pre-built components than Material (the free version) and is very easy to modify. Feels very comparable to Chakra UI. The hooks are an awesome addition. 
 

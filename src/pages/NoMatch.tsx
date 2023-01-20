@@ -1,11 +1,37 @@
-import React from 'react'
+import { Box, Container, Title } from '@mantine/core';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-type Props = {}
+const NoMatch = () => {
+  const navigate = useNavigate();
 
-const NoMatch = (props: Props) => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigate('/');
+    }, 2000);
+  }, []);
+
   return (
-    <div>NoMatch</div>
-  )
-}
+    <main>
+      <Container>
+        <Box
+          mt={'5rem'}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Title order={1} variant="gradient">
+            404
+          </Title>
+          <Title order={2}>Oops, no such page exists!</Title>
+          <Title order={2}>Sending you back to the home page...</Title>
+        </Box>
+      </Container>
+    </main>
+  );
+};
 
-export default NoMatch
+export default NoMatch;
