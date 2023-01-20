@@ -60,7 +60,6 @@ const Scoreboard = () => {
     selectedGame ? getScores(id) : getScores();
   }, [selectedGame]);
 
-  console.log(id, selectedGame, scores);
   return (
     <main>
       <Container>
@@ -129,7 +128,15 @@ const Scoreboard = () => {
           >
             {selectedGame ? selectedGame.name : games[0].name}
           </Title>
-          <div style={{ width: 340, marginLeft: 'auto', marginRight: 'auto', marginTop: '1rem', marginBottom: '1rem' }}>
+          <div
+            style={{
+              width: 340,
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              marginTop: '1rem',
+              marginBottom: '1rem',
+            }}
+          >
             <Image
               radius="xl"
               src={selectedGame ? selectedGame.imageSrc : games[0].imageSrc}
